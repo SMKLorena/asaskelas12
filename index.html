@@ -9,11 +9,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Cambria, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: linear-gradient(180deg, #bf00ff 0%, #efefef 40%, #ffffff 100%);
+            background: linear-gradient(180deg, #b9deed 0%, #efefef 40%, #ffffff 100%);
             background-attachment: fixed;
             color: #333333;
             display: flex;
@@ -65,6 +65,10 @@
             justify-content: space-between;
         }
 
+        .card[hidden] {
+            display: none !important;
+        }
+
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 15px rgba(0,0,0,0.15);
@@ -110,47 +114,6 @@
         .card-dasarprogramkeahlianTKRO, .card-informatika, .card-Sejarah, 
         .card-Penjaskes, .card-BahasaInggris, .card-BahasaJawa, .card-KKA { 
             border: 2px solid #4fa3d1 !important; 
-        } 
-
-        /* ========================================================
-           STYLE KHUSUS UNTUK MAPEL YANG SUDAH DIKERJAKAN (NONAKTIF)
-           ======================================================== */
-        .card.completed {
-            background: #f0f0f0 !important;
-            border-color: #cccccc !important;
-            opacity: 0.75;
-        }
-
-        .card.completed h2 {
-            color: #777777 !important;
-        }
-
-        .card.completed p {
-            color: #999999 !important;
-        }
-
-        .card.completed .btn-link {
-            background: #a0a0a0 !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
-            cursor: not-allowed !important;
-            pointer-events: none; /* Mencegah link dibuka kembali */
-        }
-
-        /* Badge status selesai */
-        .status-badge {
-            display: none;
-            font-size: 0.75rem;
-            font-weight: bold;
-            color: #2e7d32;
-            background-color: #e8f5e9;
-            padding: 3px 8px;
-            border-radius: 12px;
-            margin-bottom: 8px;
-        }
-
-        .card.completed .status-badge {
-            display: inline-block;
         }
 
         /* Tombol Reset Admin */
@@ -175,194 +138,171 @@
 
     <header>
         <img src="https://iili.io/BsmClaV.png" alt="Logo Sekolah" class="logo">
-        <h1>ASESMEN SUMATIF AKHIR SEMESTER KELAS 12</h1>
+        <h1>ASESMEN SUMATIF AKHIR SEMESTER</h1>
         <h1>TAHUN PELAJARAN 2026-2027</h1>
         <h1>SMK MUHAMMADIYAH 2 WATES</h1>
     </header>
 
+    <div id="today-info" style="text-align:center; color:#1e4b70; font-weight:600; margin: 0 0 8px;">
+        Mata pelajaran yang tampil adalah jadwal ujian hari ini.
+    </div>
+
     <div class="container">
         <!-- Kartu Matematika -->
-        <div class="card card-matematika" id="mapel-matematika">
+        <div class="card card-matematika" id="mapel-matematika" data-exam-date="2026-11-23">
             <div>
-                <span class="status-badge">✓ Sudah Dikerjakan</span>
                 <h2>Matematika</h2>
-                <p>Hari/Tanggal : Senin / 23 November 2026<br>Waktu: 07.30-08.30</p>
+                <p>Hari/Tanggal : Minggu / 15 November 2026<br>Waktu: 07.30-08.30</p>
             </div>
-            <a href="https://forms.gle/TxeHP1ftChKdgHdt7" target="_blank" class="btn-link" onclick="markAsCompleted('mapel-matematika')">Mulai Ujian</a>
+            <a href="https://forms.gle/TxeHP1ftChKdgHdt7" target="_blank" class="btn-link">Mulai Ujian</a>
         </div>
 
         <!-- Kartu PKN -->
-        <div class="card card-PKN" id="mapel-pkn">
+        <div class="card card-PKN" id="mapel-pkn" data-exam-date="2026-11-23">
             <div>
-                <span class="status-badge">✓ Sudah Dikerjakan</span>
                 <h2>PKN</h2>
                 <p>Hari/Tanggal : Senin / 23 November 2026<br>Waktu: 08.30-09.30</p>
             </div>
-            <a href="https://forms.gle/zR8KTWGbR6EtGw1W9" target="_blank" class="btn-link" onclick="markAsCompleted('mapel-pkn')">Mulai Ujian</a>
+            <a href="https://forms.gle/zR8KTWGbR6EtGw1W9" target="_blank" class="btn-link">Mulai Ujian</a>
         </div>
 
         <!-- Kartu Seni Budaya -->
-        <div class="card card-SeniBudaya" id="mapel-senibudaya">
+        <div class="card card-SeniBudaya" id="mapel-senibudaya" data-exam-date="2026-11-23">
             <div>
-                <span class="status-badge">✓ Sudah Dikerjakan</span>
                 <h2>Seni Budaya</h2>
                 <p>Hari/Tanggal : Senin / 23 November 2026<br>Waktu: 10.00-11.00</p>
             </div>
-            <a href="https://forms.gle/P4Hbbqj1y3JFiaKG6" target="_blank" class="btn-link" onclick="markAsCompleted('mapel-senibudaya')">Mulai Ujian</a>
+            <a href="https://forms.gle/P4Hbbqj1y3JFiaKG6" target="_blank" class="btn-link">Mulai Ujian</a>
         </div>
 
         <!-- Kartu Bahasa Indonesia -->
-        <div class="card card-BahasaIndonesia" id="mapel-bindonesia">
+        <div class="card card-BahasaIndonesia" id="mapel-bindonesia" data-exam-date="2026-11-24">
             <div>
-                <span class="status-badge">✓ Sudah Dikerjakan</span>
                 <h2>Bahasa Indonesia</h2>
                 <p>Hari/Tanggal : Selasa / 24 November 2026<br>Waktu: 07.30-08.30</p>
             </div>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKeInhbnZQA-KErQACkw5IOKuj3lmuM5BtGE5lWqTCYRcy9Q/viewform?usp=header" target="_blank" class="btn-link" onclick="markAsCompleted('mapel-bindonesia')">Mulai Ujian</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKeInhbnZQA-KErQACkw5IOKuj3lmuM5BtGE5lWqTCYRcy9Q/viewform?usp=header" target="_blank" class="btn-link">Mulai Ujian</a>
         </div>
 
         <!-- Kartu IPAS -->
-        <div class="card card-IPAS" id="mapel-ipas">
+        <div class="card card-IPAS" id="mapel-ipas" data-exam-date="2026-11-24">
             <div>
-                <span class="status-badge">✓ Sudah Dikerjakan</span>
                 <h2>IPAS</h2>
                 <p>Hari/Tanggal : Selasa / 24 November 2026<br>Waktu: 08.30-09.30</p>
             </div>
-            <a href="https://forms.gle/YpqBoYQK4cBz8XrJ7" target="_blank" class="btn-link" onclick="markAsCompleted('mapel-ipas')">Mulai Ujian</a>
+            <a href="https://forms.gle/YpqBoYQK4cBz8XrJ7" target="_blank" class="btn-link">Mulai Ujian</a>
         </div>
 
         <!-- Kartu dasar program keahlian MPLB -->
-        <div class="card card-dasarprogramkeahlianMPLB" id="mapel-mplb">
+        <div class="card card-dasarprogramkeahlianMPLB" id="mapel-mplb" data-exam-date="2026-11-24">
             <div>
-                <span class="status-badge">✓ Sudah Dikerjakan</span>
                 <h2>Dasar Program Keahlian MPLB</h2>
                 <p>Hari/Tanggal : Selasa / 24 November 2026<br>Waktu: 10.00-11.00</p>
             </div>          
-            <a href="https://forms.gle/8BbrRupsefvrtkFu5" target="_blank" class="btn-link" onclick="markAsCompleted('mapel-mplb')">Mulai Ujian</a>
+            <a href="https://forms.gle/8BbrRupsefvrtkFu5" target="_blank" class="btn-link">Mulai Ujian</a>
         </div>
 
         <!-- Kartu dasar program keahlian TPFL -->
-        <div class="card card-dasarprogramkeahlianTPFL" id="mapel-tpfl">
+        <div class="card card-dasarprogramkeahlianTPFL" id="mapel-tpfl" data-exam-date="2026-11-24">
             <div>
-                <span class="status-badge">✓ Sudah Dikerjakan</span>
                 <h2>Dasar Program Keahlian TPFL</h2>
                 <p>Hari / Tanggal : Selasa / 24 November 2026<br> Waktu: 10.00-11.00</p>
             </div>
-            <a href="https://forms.gle/WaunPXNnAhLVhuUB7" target="_blank" class="btn-link" onclick="markAsCompleted('mapel-tpfl')">Mulai Ujian</a> 
+            <a href="https://forms.gle/WaunPXNnAhLVhuUB7" target="_blank" class="btn-link">Mulai Ujian</a> 
         </div>
 
         <!-- Kartu dasar program keahlian TKRO -->
-        <div class="card card-dasarprogramkeahlianTKRO" id="mapel-tkro">
+        <div class="card card-dasarprogramkeahlianTKRO" id="mapel-tkro" data-exam-date="2026-11-24">
             <div>
-                <span class="status-badge">✓ Sudah Dikerjakan</span>
                 <h2>Dasar Program Keahlian TKRO</h2>
                 <p>Hari / Tanggal : Selasa / 24 November 2026<br> Waktu: 10.00-11.00</p>
             </div>  
-            <a href="https://forms.gle/8BbrRupsefvrtkFu5" target="_blank" class="btn-link" onclick="markAsCompleted('mapel-tkro')">Mulai Ujian</a>
+            <a href="https://forms.gle/8BbrRupsefvrtkFu5" target="_blank" class="btn-link">Mulai Ujian</a>
         </div>
 
         <!-- Kartu Informatika -->
-        <div class="card card-informatika" id="mapel-informatika">
+        <div class="card card-informatika" id="mapel-informatika" data-exam-date="2026-11-26">
             <div>
-                <span class="status-badge">✓ Sudah Dikerjakan</span>
                 <h2>Informatika</h2>
                 <p>Hari/Tanggal : Kamis / 26 November 2026<br>Waktu: 07.30-08.30</p>
             </div>
-            <a href="https://forms.gle/YpqBoYQK4cBz8XrJ7" target="_blank" class="btn-link" onclick="markAsCompleted('mapel-informatika')">Mulai Ujian</a>
+            <a href="https://forms.gle/YpqBoYQK4cBz8XrJ7" target="_blank" class="btn-link">Mulai Ujian</a>
         </div>
 
         <!-- Kartu Sejarah -->
-        <div class="card card-Sejarah" id="mapel-sejarah">
+        <div class="card card-Sejarah" id="mapel-sejarah" data-exam-date="2026-11-26">
             <div>
-                <span class="status-badge">✓ Sudah Dikerjakan</span>
                 <h2>Sejarah</h2>
                 <p>Hari/Tanggal : Kamis / 26 November 2026<br>Waktu: 08.30-09.30</p>
             </div>
-            <a href="https://forms.gle/P4Hbbqj1y3JFiaKG6" target="_blank" class="btn-link" onclick="markAsCompleted('mapel-sejarah')">Mulai Ujian</a>
+            <a href="https://forms.gle/P4Hbbqj1y3JFiaKG6" target="_blank" class="btn-link">Mulai Ujian</a>
         </div>
 
         <!-- Kartu Penjaskes -->
-        <div class="card card-Penjaskes" id="mapel-penjaskes">
+        <div class="card card-Penjaskes" id="mapel-penjaskes" data-exam-date="2026-11-26">
             <div>
-                <span class="status-badge">✓ Sudah Dikerjakan</span>
                 <h2>Penjaskes</h2>
                 <p>Hari/Tanggal : Kamis / 26 November<br>Waktu: 10.00-11.00</p>
             </div>
-            <a href="https://forms.gle/bYMsrtUZJ6tvpUYbA" target="_blank" class="btn-link" onclick="markAsCompleted('mapel-penjaskes')">Mulai Ujian</a>
+            <a href="https://forms.gle/bYMsrtUZJ6tvpUYbA" target="_blank" class="btn-link">Mulai Ujian</a>
         </div>
 
         <!-- Kartu Bahasa Inggris -->
-        <div class="card card-BahasaInggris" id="mapel-binggris">
+        <div class="card card-BahasaInggris" id="mapel-binggris" data-exam-date="2026-11-27">
             <div>
-                <span class="status-badge">✓ Sudah Dikerjakan</span>
                 <h2>Bahasa Inggris</h2>
                 <p>Hari/Tanggal : Jumat / 27 November 2026<br>Waktu: 07.30-08.30</p>
             </div>
-            <a href="https://forms.gle/7NrfRxSr9ciWLJSQ6" target="_blank" class="btn-link" onclick="markAsCompleted('mapel-binggris')">Mulai Ujian</a>
+            <a href="https://forms.gle/7NrfRxSr9ciWLJSQ6" target="_blank" class="btn-link">Mulai Ujian</a>
         </div>
 
         <!-- Kartu Bahasa Jawa -->
-        <div class="card card-BahasaJawa" id="mapel-bjawa">
+        <div class="card card-BahasaJawa" id="mapel-bjawa" data-exam-date="2026-11-27">
             <div>
-                <span class="status-badge">✓ Sudah Dikerjakan</span>
                 <h2>Bahasa Jawa</h2>
                 <p>Hari/Tanggal : Jumat / 27 November 2026<br>Waktu: 08.30-09.30</p>
             </div>
-            <a href="https://forms.gle/NHaz3cnCtjbSWigV6" target="_blank" class="btn-link" onclick="markAsCompleted('mapel-bjawa')">Mulai Ujian</a>
+            <a href="https://forms.gle/NHaz3cnCtjbSWigV6" target="_blank" class="btn-link">Mulai Ujian</a>
         </div>
 
         <!-- Kartu KKA -->
-        <div class="card card-KKA" id="mapel-KKA">
+        <div class="card card-KKA" id="mapel-KKA" data-exam-date="2026-11-27">
             <div>
-                <span class="status-badge">✓ Sudah Dikerjakan</span>
                 <h2>KKA</h2>
                 <p>Hari/Tanggal : Jumat / 27 November 2026<br>Waktu: 10.00-11.00</p>
             </div>
-            <a href="https://forms.gle/2tB1SoRPGcHuwQX18" target="_blank" class="btn-link" onclick="markAsCompleted('mapel-bjawa')">Mulai Ujian</a>
+            <a href="https://forms.gle/2tB1SoRPGcHuwQX18" target="_blank" class="btn-link">Mulai Ujian</a>
         </div>
     </div>
+<script>
+    // Tampilkan hanya mata pelajaran yang tanggal ujiannya sama dengan tanggal hari ini.
+    (function tampilkanMapelHariIni() {
+        const now = new Date();
+        const tahun = now.getFullYear();
+        const bulan = String(now.getMonth() + 1).padStart(2, '0');
+        const tanggal = String(now.getDate()).padStart(2, '0');
+        const hariIni = `${tahun}-${bulan}-${tanggal}`;
 
-    <!-- Tombol Reset Status (Bisa dipakai Guru/Admin untuk reset status ujian) -->
-    <button class="btn-reset" onclick="resetStatusUjian()">Reset Status Ujian (Pengaturan Proktor)</button>
+        const semuaKartu = document.querySelectorAll('.container .card[data-exam-date]');
+        let jumlahTampil = 0;
 
-    <script>
-        // Fungsi untuk menandai mapel yang sudah diklik/dikerjakan
-        function markAsCompleted(mapelId) {
-            let completedMapels = JSON.parse(localStorage.getItem('completed_mapels')) || [];
-            if (!completedMapels.includes(mapelId)) {
-                completedMapels.push(mapelId);
-                localStorage.setItem('completed_mapels', JSON.stringify(completedMapels));
-            }
-            applyCompletedState(mapelId);
-        }
-
-        // Terapkan perubahan visual pada kartu mapel
-        function applyCompletedState(mapelId) {
-            const cardElement = document.getElementById(mapelId);
-            if (cardElement) {
-                cardElement.classList.add('completed');
-                const btn = cardElement.querySelector('.btn-link');
-                if (btn) {
-                    btn.textContent = 'Selesai / Dikerjakan';
-                }
-            }
-        }
-
-        // Saat halaman dimuat, cek mapel mana saja yang sudah dikerjakan sebelumnya
-        document.addEventListener('DOMContentLoaded', function() {
-            let completedMapels = JSON.parse(localStorage.getItem('completed_mapels')) || [];
-            completedMapels.forEach(function(mapelId) {
-                applyCompletedState(mapelId);
-            });
+        semuaKartu.forEach((kartu) => {
+            const sesuaiHari = kartu.dataset.examDate === hariIni;
+            kartu.hidden = !sesuaiHari;
+            if (sesuaiHari) jumlahTampil++;
         });
 
-        // Fungsi untuk mereset status jika ingin diuji coba kembali
-        function resetStatusUjian() {
-            if (confirm("Apakah Anda yakin ingin mereset status semua mata pelajaran menjadi aktif kembali?")) {
-                localStorage.removeItem('completed_mapels');
-                location.reload();
-            }
+        const info = document.getElementById('today-info');
+        const namaHari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'][now.getDay()];
+        const namaBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'][now.getMonth()];
+        const tanggalTeks = `${namaHari}, ${now.getDate()} ${namaBulan} ${tahun}`;
+
+        if (jumlahTampil > 0) {
+            info.textContent = `Jadwal ujian hari ini: ${tanggalTeks}`;
+        } else {
+            info.textContent = `Tidak ada jadwal ujian untuk hari ini (${tanggalTeks}).`;
         }
-    </script>
+    })();
+</script>
 </body>
 </html>
