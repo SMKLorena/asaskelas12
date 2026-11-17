@@ -5,133 +5,196 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ujian Sekolah Online</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --navy: #123b63;
+            --blue: #176fae;
+            --sky: #eaf6ff;
+            --text: #24364b;
+            --muted: #66788a;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: linear-gradient(180deg, #b9deed 0%, #efefef 40%, #ffffff 100%);
-            background-attachment: fixed;
-            color: #333333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
             min-height: 100vh;
+            padding: 28px 20px 42px;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 8% 8%, rgba(74, 164, 220, .18), transparent 28%),
+                radial-gradient(circle at 92% 30%, rgba(29, 111, 174, .10), transparent 26%),
+                linear-gradient(180deg, #e7f5ff 0%, #f5faff 48%, #ffffff 100%);
+            background-attachment: fixed;
         }
 
         header {
+            position: relative;
+            max-width: 980px;
+            margin: 0 auto 22px;
+            padding: 30px 22px 28px;
             text-align: center;
-            margin-bottom: 20px;
-            margin-top: 10px;
+            overflow: hidden;
+            border-radius: 24px;
+            color: white;
+            background: linear-gradient(130deg, #123b63 0%, #176fae 58%, #43a4d5 100%);
+            box-shadow: 0 16px 38px rgba(18, 59, 99, .20);
         }
-
+        header::before, header::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        header::before { width: 260px; height: 260px; right: -75px; top: -150px; }
+        header::after { width: 190px; height: 190px; left: -75px; bottom: -125px; }
+        .logo {
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: 86px;
+            height: 86px;
+            object-fit: contain;
+            padding: 7px;
+            margin: 0 auto 15px;
+            background: #fff;
+            border-radius: 19px;
+            box-shadow: 0 5px 18px rgba(0,0,0,.15);
+        }
         header h1 {
-            color: #1e4b70;
-            font-size: 1.2rem;
-            margin-bottom: 3px;
-            font-weight: 500;
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            font-size: clamp(1rem, 2.5vw, 1.55rem);
+            line-height: 1.35;
+            letter-spacing: .5px;
+            font-weight: 750;
+            margin: 3px 0;
+        }
+        header h1:nth-of-type(2) {
+            font-size: clamp(.85rem, 2vw, 1.08rem);
+            font-weight: 600;
+            opacity: .9;
+        }
+        header h1:nth-of-type(3) {
+            margin-top: 8px;
+            font-size: clamp(.9rem, 2vw, 1.15rem);
+            font-weight: 650;
         }
 
-        header p {
-            color: #556c81;
-            font-size: 0.50rem;
-            font-weight: 300;
+        #today-info {
+            width: fit-content;
+            max-width: 100%;
+            margin: 0 auto 22px !important;
+            padding: 11px 20px;
+            border: 1px solid #c8e5f8;
+            border-radius: 999px;
+            background: rgba(255,255,255,.88);
+            color: var(--navy) !important;
+            font-size: .94rem;
+            box-shadow: 0 5px 16px rgba(27, 91, 139, .07);
         }
 
-        /* Grid untuk Kartu Mapel */
         .container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+            gap: 18px;
             width: 100%;
-            max-width: 900px;
-            padding: 10px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0;
         }
-
-        /* Desain Kartu Mapel */
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            position: relative;
+            min-height: 190px;
+            padding: 23px 21px 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            gap: 18px;
+            overflow: hidden;
+            text-align: left;
+            border: 1px solid #d9eaf6;
+            border-left: 5px solid #2589c5;
+            border-radius: 17px;
+            background: rgba(255,255,255,.96);
+            box-shadow: 0 7px 22px rgba(25, 76, 112, .08);
+            transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
         }
-
-        .card[hidden] {
-            display: none !important;
+        .card::after {
+            content: "✦";
+            position: absolute;
+            right: 17px;
+            top: 11px;
+            color: #d8edf9;
+            font-size: 2.4rem;
+            line-height: 1;
         }
-
+        .card[hidden] { display: none !important; }
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+            border-color: #9ccfeb;
+            box-shadow: 0 14px 28px rgba(25, 76, 112, .14);
         }
-
         .card h2 {
+            position: relative;
+            z-index: 1;
+            color: var(--navy);
             font-size: 1.2rem;
-            color: #1e4b70;
-            margin-bottom: 8px;
+            font-weight: 750;
+            margin: 0 28px 12px 0;
         }
-
+        .card h2::before { content: "📘"; margin-right: 9px; font-size: 1rem; }
         .card p {
-            font-size: 0.85rem;
-            color: #666666;
-            margin-bottom: 15px;
-            line-height: 1.4;
+            color: var(--muted);
+            font-size: .88rem;
+            line-height: 1.7;
+            margin: 0;
         }
-
-        /* Desain Tombol */
         .btn-link {
-            text-decoration: none;
-            background: linear-gradient(135deg, #4fa3d1 0%, #1d6fa5 100%);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 6px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
+            display: block;
             width: 100%;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 8px rgba(29, 111, 165, 0.25);
-            display: inline-block;
+            padding: 12px 16px;
+            border: 0;
+            border-radius: 10px;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-size: .9rem;
+            font-weight: 750;
+            letter-spacing: .3px;
+            background: linear-gradient(120deg, #238ac7, #155d98);
+            box-shadow: 0 5px 12px rgba(21, 93, 152, .20);
+            transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
         }
-
+        .btn-link::after { content: "  →"; font-size: 1.05rem; }
         .btn-link:hover {
-            background-color: #2980b9;
+            transform: translateY(-2px);
+            filter: brightness(1.08);
+            box-shadow: 0 8px 16px rgba(21, 93, 152, .27);
         }
-
-        /* Border Kartu Standard */
-        .card-matematika, .card-PKN, .card-PKK, .card-BahasaIndonesia, 
-        .card-GTAW, .card-PCSPT, .card-kepeg, 
-        .card-PMKR, .card-humas, .card-mutulas, .card-moblis, .card-bisdig,
-        .card-Penjaskes, .card-PKKR, .card-keuangan, cars-binggris.card-BahasaJawa, 
-        .card-senbud, .card-informatika, .card-sejarah, .card-ipas, .card-sarpras { 
-            border: 2px solid #4fa3d1 !important; 
-        }
-
-        /* Tombol Reset Admin */
         .btn-reset {
-            margin-top: 30px;
-            padding: 8px 16px;
-            font-size: 0.8rem;
-            background-color: #e74c3c;
+            display: block;
+            margin: 28px auto 0;
+            padding: 9px 17px;
+            border: 0;
+            border-radius: 8px;
             color: white;
-            border: none;
-            border-radius: 4px;
+            background: #d9534f;
             cursor: pointer;
-            opacity: 0.6;
-            transition: opacity 0.2s;
+            opacity: .8;
         }
-        .btn-reset:hover {
-            opacity: 1;
+        .btn-reset:hover { opacity: 1; }
+
+        @media (max-width: 600px) {
+            body { padding: 14px 12px 30px; }
+            header { padding: 24px 15px; border-radius: 18px; margin-bottom: 17px; }
+            .logo { width: 72px; height: 72px; border-radius: 16px; }
+            #today-info { font-size: .82rem; padding: 10px 14px; text-align: center; border-radius: 13px; }
+            .container { grid-template-columns: 1fr; gap: 13px; }
+            .card { min-height: 172px; padding: 20px 18px 17px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { transition: none !important; }
         }
     </style>
 </head>
